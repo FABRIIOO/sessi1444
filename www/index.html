@@ -182,7 +182,7 @@
 				.fail(function(jqXHR, textStatus, msg){
 					alert(msg);
 					alert("Erro de alguma coisa");
-					alert(jqXHR);
+					alert(JSON.stringify(jqXHR));
 					alert(textStatus);
 			}); 
         }
