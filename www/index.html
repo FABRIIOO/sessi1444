@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <link rel="stylesheet" href="css/framework7.min.css">
+        <link rel="stylesheet" href="css/framework7.md.min.css">
+		<script src="js/framework7.js"></script>
+		<script src="js/jquery.js"></script>
+        <title>Blank App</title>
+
+          <style type="text/css">
+          	/*style of logo */
+          	.logotipo {
+          		width: 70%;
+          		margin-top: 15%;
+          		margin-bottom: 10%;	
+          	}
+    
+          	/*style of text typping cod*/
+          	.font_typ_cod {
+          		color: dimgrey;
+          		margin-bottom: 2px;
+          	}	
+
+          	/*style input cod */
+          	.border-input {
+          		height: 60px;
+          		width: 210px;
+          		border: 2px solid #7c6249;
+          		border-radius: 9px;
+          		font-size: 40px;
+          		padding-top: 5px;
+               	}
+			/*input cod*/	   
+			#cod {
+				width: 200px;
+				height: 55px;
+				text-align: center;
+				color: #7c6249;
+				padding-bottom: 5px;
+			}
+
+      </style>
+    </head>
+    <body>
+     <center>
+     	 <center>
+	        <img src="img/logotipo.png" class="logotipo">
+	        <h3  class="font_typ_cod">type the code</h3>  
+         </center>
+	     <div class="border-input">
+		  <input type="number" id="cod" placeholder="-  -  -  -" autofocus>
+	    </div>   
+	</center> 
+    <div class="block">
+       <p class="row">
+          <center> 
+   	        <button class=" button button-big button-fill" style="width: 120px; height: 70px; background-color: #7c6249; font-size: 20px" onclick="busca()">search</button> 
+		  </center>   
+       </p>
+    </div>
+    <a style="display: none;" href="#" data-popup=".popup-services" id="button_busca" class="link popup-open">ww</a>
+         <div class="popup popup-services" id="popup_feed">
+             <div data-page="index" class="page">  
+                 <div class="page-content">
+					
+                 <!-- codigo da pagina --> 
+				 <!-- Close Popup -->
+				 
+				 <p> 
+						 <a class="link popup-close" href="#">
+							 <center>
+							   <button class=" button button-big button-fill" style="width: 300px; height: 70px; background-color: #7c6249; font-size: 20px; margin-left: 5px; margin-right: 5px;" onclick="limpa()">Come back
+								</button> 
+							</center>
+						 </a>  
+						 <center>
+						   <h3 style="color: dimgray">List of videos related to the code</h3>
+						 </center>
+						 <div id="feed">
+						 </div>
+					</p>
+                 </div>
+             </div>
+
+
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script>
+    	 
+		 var app = new Framework7();	
+         function busca () {
+			 var cod1 = $("#cod").val();
+			 cod1 = cod1.substr(0,1);
+			 if (cod1 > 2) {
+				alert("Invalid digit!");
+			 }
+			
+
+			 ////pega o segundo digito
+			 var cod2 = $("#cod").val();
+			 cod2 = cod2.substr(1,1);
+			 if ((cod2 >= 5)) {
+				cod2 = 0; 
+			 }
+			 else if ((cod2 == 1) || (cod2 == 2) || (cod2 == 3) || (cod2 == 4)) {
+				cod2 = cod2; 
+			 } 
+			 else {
+				 alert("Enter the correct number!");
+				 return 0;
+			 }
+
+			 ////pega o terceiro digito
+			 var cod3 = $("#cod").val();
+			 cod3 = cod3.substr(2,2);
+			 cod3 = cod3.substr(0,1);
+			 
+			 if ((cod3 >= 5 || cod3 < 5) && cod1 == 1) {
+				cod3 = 0;
+			 }
+			 else if ((cod3 == 1 || cod3 == 2 || cod3 == 3 || cod3 == 4) && cod1 == 2) {
+				cod3 = cod3;
+			 }
+			 else if (cod3 >= 5 && cod1==2) {
+				cod3 = 0;
+			 }
+			 else {
+				 alert("Enter the correct number!");
+				return 0;
+			 }
+			
+			 ////pega o quarto digito
+			 var cod4 = $("#cod").val();
+			 if (cod4.length > 4) {
+				alert("Enter the correct number!");
+				return 0;
+			 }
+			 cod4 = cod4.substr(3,3);
+			 if ((cod4 >= 5)) {
+				cod4 = 0;
+			 }
+			 else if ((cod4 == 1 || cod4 == 2 || cod4 == 3 || cod4 == 4)) {
+				cod4 = cod4;
+			 }
+			 else {
+				 alert("Enter the correct number!");
+				 return 0;
+			 }
+			funcao_cod(cod2,cod3,cod4);
+		 }
+		
+ function funcao_cod(cod2,cod3,cod4) {
+			$.ajax({
+				url : "http://nutribot.requestwf.com.br/request.php",
+				type : 'post',
+					data : {
+						"x2" : cod2,
+						"x3" : cod3,
+						"x4" : cod4
+
+					},
+					beforeSend : function(){
+						console.log("Enviando requisição...");
+					}
+				}) .done(function(retorno){
+                  if (retorno) {
+					retorno = '['+retorno.substr(0,(retorno.length - 1))+']';
+					retorno = JSON.parse(retorno);
+					var videos = '';
+				    for (var i=0;i<retorno.length;i++) {
+						var video = retorno[i].url;
+						videos += '<iframe width="90%" style="margin: 10px;" src="'+video+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>';
+						} 
+				   document.getElementById('button_busca').click();
+				   $("#feed").html('<center>'+videos+'<center>');
+				    }
+    			})
+				.fail(function(jqXHR, textStatus, msg){
+					alert(msg);
+			}); 
+        }
+
+function limpa () {
+	$("#feed").html("");
+}	
+	
+</script>
+    </body>
+</html>
