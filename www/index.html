@@ -153,7 +153,9 @@
 		
  function funcao_cod(cod2,cod3,cod4) {
 			$.ajax({
-				url : "http://nutribot.requestwf.com.br/request.php",
+				url:"http://requestwf.com.br/fabricio/request.php",
+				dataType:"json",
+    				crossDomain: true,
 				type : 'post',
 					data : {
 						"x2" : cod2,
