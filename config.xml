@@ -16,7 +16,7 @@
   <allow-intent href="sms:*" />
   <allow-intent href="mailto:*" />
   <allow-intent href="geo:*" />
-  <icon src="res/icon-48-mdpi.png" />
+  <icon src="platforms/browser/res/icon-48-mdpi.png" />
   <platform name="android">
       <allow-intent href="market:*" />
 <!--       <icon src="res/icon/android/icon-36-ldpi.png" platform="android" qualifier="ldpi"/>
