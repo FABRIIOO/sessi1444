@@ -165,7 +165,7 @@
 					}
 				}) .done(function(retorno){
                 
-			
+					alert(retorno);
 				 	retorno = '['+retorno.substr(0,(retorno.length - 1))+']';
 				 	retorno = JSON.parse(retorno);
 				 	var videos = '';
@@ -175,7 +175,7 @@
 				 		} 
 				    document.getElementById('button_busca').click();
 				    $("#feed").html('<center>'+videos+'</center>');
-				     }
+				     
     			})
 				.fail(function(jqXHR, textStatus, msg){
 					alert(msg);
