@@ -51,7 +51,6 @@
          </center>
 	     <div class="border-input">
 		  <input type="number" id="cod" placeholder="-  -  -  -" autofocus>
-		  <iframe width="560" height="315" src="https://www.youtube.com/embed/QRJI7j4JVgc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 	    </div>   
 	</center> 
     <div class="block">
@@ -79,7 +78,7 @@
 						 <center>
 						   <h3 style="color: dimgray">List of videos related to the code</h3>
 						 </center>
-					  <div id="feed">
+						 <div id="feed">
 						 </div>
 					</p>
                  </div>
@@ -153,40 +152,35 @@
 		 }
 		
  function funcao_cod(cod2,cod3,cod4) {
-	 alert(cod2+'->'+cod3);
 			$.ajax({
-				url:"http://requestwf.com.br/fabricio/request.php",
-				dataType:"json",
-    				crossDomain: true,
-				type : 'post',
+				url : "http://nutribot.requestwf.com.br/request.php",
+				type : 'POST',
 					data : {
 						"x2" : cod2,
 						"x3" : cod3,
 						"x4" : cod4
-
 					},
 					beforeSend : function(){
 						console.log("Enviando requisição...");
 					}
 				}) .done(function(retorno){
+                
 				alert(JSON.stringify(retorno));
-                               if (retorno) {
-					retorno = '['+retorno.substr(0,(retorno.length - 1))+']';
-					retorno = JSON.parse(retorno);
-					var videos = '';
-				    for (var i=0;i<retorno.length;i++) {
-						var video = retorno[i].url;
-						videos += '<iframe width="90%" style="margin: 10px;" src="'+video+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>';
-						} 
-				   document.getElementById('button_busca').click();
-				   $("#feed").html('<center>'+videos+'<center>');
-				    }
+				
+				//   if (retorno) {
+				// 	retorno = '['+retorno.substr(0,(retorno.length - 1))+']';
+				// 	retorno = JSON.parse(retorno);
+				// 	var videos = '';
+				//     for (var i=0;i<retorno.length;i++) {
+				// 		var video = retorno[i].url;
+				// 		videos += '<iframe width="90%" style="margin: 10px;" src="'+video+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>';
+				// 		} 
+				//    document.getElementById('button_busca').click();
+				//    $("#feed").html('<center>'+videos+'<center>');
+				//     }
     			})
 				.fail(function(jqXHR, textStatus, msg){
 					alert(msg);
-					alert("Erro de alguma coisa");
-					alert(JSON.stringify(jqXHR));
-					alert(textStatus);
 			}); 
         }
 
