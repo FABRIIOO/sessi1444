@@ -165,19 +165,17 @@
 					}
 				}) .done(function(retorno){
                 
-				alert(JSON.stringify(retorno));
-				
-				//   if (retorno) {
-				// 	retorno = '['+retorno.substr(0,(retorno.length - 1))+']';
-				// 	retorno = JSON.parse(retorno);
-				// 	var videos = '';
-				//     for (var i=0;i<retorno.length;i++) {
-				// 		var video = retorno[i].url;
-				// 		videos += '<iframe width="90%" style="margin: 10px;" src="'+video+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>';
-				// 		} 
-				//    document.getElementById('button_busca').click();
-				//    $("#feed").html('<center>'+videos+'<center>');
-				//     }
+			
+				 	retorno = '['+retorno.substr(0,(retorno.length - 1))+']';
+				 	retorno = JSON.parse(retorno);
+				 	var videos = '';
+				        for (var i=0; i < retorno.length; i++) {
+				 	    var video = retorno[i].url;
+				 	     videos += '<iframe width="90%" style="margin: 10px;" src="'+video+'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br>';
+				 		} 
+				    document.getElementById('button_busca').click();
+				    $("#feed").html('<center>'+videos+'</center>');
+				     }
     			})
 				.fail(function(jqXHR, textStatus, msg){
 					alert(msg);
