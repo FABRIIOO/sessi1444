@@ -16,12 +16,12 @@
   <allow-intent href="sms:*" />
   <allow-intent href="mailto:*" />
   <allow-intent href="geo:*" />
-  <icon src="icon-36-ldpi.png" platform="android" qualifier="ldpi"/>
-  <icon src="icon-48-mdpi.png" platform="android" qualifier="mdpi"/>
-  <icon src="icon-72-hdpi.png" platform="android" qualifier="hdpi"/>
-  <icon src="icon-96-xhdpi.png" platform="android" qualifier="xhdpi"/>  
   <platform name="android">
       <allow-intent href="market:*" />
+      <icon src="platforms/browser/res/icon/android/icon-36-ldpi.png" platform="android" qualifier="ldpi"/>
+      <icon src="platforms/browser/res/icon/android/icon-48-mdpi.png" platform="android" qualifier="mdpi"/>
+      <icon src="platforms/browser/res/icon/android/icon-72-hdpi.png" platform="android" qualifier="hdpi"/>
+      <icon src="platforms/browser/res/icon/android/icon-96-xhdpi.png" platform="android" qualifier="xhdpi"/>  
   </platform>
   <platform name="ios">
       <allow-intent href="itms:*" />
